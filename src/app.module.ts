@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodoItemModule } from './todo-item/todo-item.module';
@@ -17,7 +18,8 @@ import { TodoItemModule } from './todo-item/todo-item.module';
     }),
     GraphQLModule.forRoot({
       // set to true to automatically generate schema
-      autoSchemaFile: true,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
     }),
     TodoItemModule,
   ],

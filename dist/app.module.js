@@ -10,6 +10,7 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
+const path_1 = require("path");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const todo_item_module_1 = require("./todo-item/todo-item.module");
@@ -27,7 +28,8 @@ AppModule = __decorate([
                 logging: true,
             }),
             graphql_1.GraphQLModule.forRoot({
-                autoSchemaFile: true,
+                autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
+                sortSchema: true,
             }),
             todo_item_module_1.TodoItemModule,
         ],
